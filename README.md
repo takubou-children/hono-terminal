@@ -1,1 +1,8 @@
-# hono-terminal
+```
+npm install
+npm run dev
+```
+
+```
+npm run deploy
+```
