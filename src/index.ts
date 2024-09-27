@@ -5,5 +5,10 @@ import api from "./open_api/route";
 
 const app = new Hono();
 
+app.get("/", (c) => {
+  return c.json({ message: "Hello, World!" });
+});
+
 app.route("/api", api);
+
 export default app;
