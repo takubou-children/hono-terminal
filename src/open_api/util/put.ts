@@ -14,7 +14,7 @@ export const putRoute = (
   props: putRouteProps
 ): Omit<RouteConfig, "path"> & { path: string } => {
   return {
-    method: "get",
+    method: "put",
     path: props.path,
     request: {
       params: props.paramsSchema as AnyZodObject | ZodObjectWithEffect,
