@@ -6,6 +6,7 @@ import {
   BookSchema,
 } from "../schema/book";
 import { postRoute } from "../util/post";
+import { OpenAPIHono } from "@hono/zod-openapi";
 
 export const GetBooksRoute = getRoute({
   path: "books",
@@ -19,7 +20,21 @@ export const GetBookRoute = getRoute({
 });
 
 export const CreateBookRoute = postRoute({
-  path: "books/",
+  path: "books",
   requestBodySchema: BookRequestBody,
   responsesSchema: BookSchema,
+});
+
+export const BookApi = new OpenAPIHono();
+
+BookApi.openapi(GetBooksRoute, (c) => {
+  return c.json({});
+});
+
+BookApi.openapi(GetBookRoute, (c) => {
+  return c.json({});
+});
+
+BookApi.openapi(CreateBookRoute, (c) => {
+  return c.json({});
 });
