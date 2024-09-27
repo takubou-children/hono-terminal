@@ -1,13 +1,13 @@
 import { ZodSchema } from "zod";
 
-type getRouteProps = {
+type putRouteProps = {
   path: string;
   paramsSchema: ZodSchema<any>;
   requestBodySchema: ZodSchema<any>;
   responsesSchema: ZodSchema<any>;
 };
 
-export const getRoute = (props: getRouteProps) => {
+export const putRoute = (props: putRouteProps) => {
   return {
     method: "get",
     path: props.path,
