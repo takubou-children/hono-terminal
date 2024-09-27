@@ -12,7 +12,6 @@ app.get("/", (c) => {
 });
 
 app.route("/api/v1", api);
-
 app.route("/api", openapi);
 
 export default app;

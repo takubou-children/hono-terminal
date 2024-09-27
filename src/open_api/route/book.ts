@@ -27,14 +27,10 @@ export const CreateBookRoute = postRoute({
 
 export const BookApi = new OpenAPIHono();
 
-BookApi.openapi(GetBooksRoute, (c) => {
-  return c.json({});
-});
+const api = [GetBooksRoute, GetBookRoute, CreateBookRoute];
 
-BookApi.openapi(GetBookRoute, (c) => {
-  return c.json({});
-});
-
-BookApi.openapi(CreateBookRoute, (c) => {
-  return c.json({});
+api.forEach((route) => {
+  BookApi.openapi(route, (c) => {
+    return c.json({});
+  });
 });
