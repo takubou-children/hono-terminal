@@ -3,7 +3,7 @@ import { Hono } from "hono";
 const bookApi = new Hono();
 
 bookApi
-  .get("/books", (c) => {
+  .get("/", (c) => {
     return c.json({ books: [] });
   })
   .post((c) => {
