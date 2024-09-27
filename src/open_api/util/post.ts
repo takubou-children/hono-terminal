@@ -1,7 +1,6 @@
 import { AnyZodObject, ZodSchema } from "zod";
 import { ZodObjectWithEffect } from "../type/params";
 import { RouteConfig } from "@hono/zod-openapi";
-import { ZodRequestBody } from "../type/body";
 
 type postRouteProps = {
   path: string;
@@ -14,13 +13,18 @@ export const postRoute = (
   props: postRouteProps
 ): Omit<RouteConfig, "path"> & { path: string } => {
   return {
-    method: "get",
+    method: "post",
     path: props.path,
     request: {
       params: props.paramsSchema as AnyZodObject | ZodObjectWithEffect,
-      body: props.requestBodySchema as unknown as ZodRequestBody,
+      body: {
+        content: {
+          "application/json": {
+            schema: props.requestBodySchema,
+          },
+        },
+      },
     },
-
     responses: {
       200: {
         content: {
@@ -30,7 +34,6 @@ export const postRoute = (
         },
         description: "Successful response",
       },
-
       404: {
         description: "Resource not found",
       },

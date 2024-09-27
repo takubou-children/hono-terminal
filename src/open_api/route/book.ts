@@ -1,6 +1,5 @@
-import { createRoute } from "@hono/zod-openapi";
 import { getRoute } from "../util/get";
-import { BookParams, BookSchema } from "../schema/book";
+import { BookParams, BookRequestBody, BookSchema } from "../schema/book";
 import { postRoute } from "../util/post";
 
 export const GetBooksRoute = getRoute({
@@ -10,7 +9,7 @@ export const GetBooksRoute = getRoute({
 });
 
 export const CreateBookRoute = postRoute({
-  path: "books",
-  requestBodySchema: BookSchema,
+  path: "books/",
+  requestBodySchema: BookRequestBody,
   responsesSchema: BookSchema,
 });

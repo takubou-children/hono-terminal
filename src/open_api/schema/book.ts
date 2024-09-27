@@ -27,3 +27,7 @@ export const BookSchema = z
   })
 
   .openapi("Book");
+
+export const BookRequestBody = BookSchema.omit({ id: true }).openapi({
+  required: ["title", "author"],
+});

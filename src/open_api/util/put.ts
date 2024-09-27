@@ -18,7 +18,13 @@ export const putRoute = (
     path: props.path,
     request: {
       params: props.paramsSchema as AnyZodObject | ZodObjectWithEffect,
-      body: props.requestBodySchema as unknown as ZodRequestBody,
+      body: {
+        content: {
+          "application/json": {
+            schema: props.requestBodySchema,
+          },
+        },
+      },
     },
     responses: {
       200: {
