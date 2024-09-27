@@ -1,15 +1,12 @@
 import { AnyZodObject, ZodEffects, ZodSchema } from "zod";
-import { RouteConfig } from "@hono/zod-openapi"; // Import the RouteConfig type
+import { RouteConfig } from "@hono/zod-openapi";
+import { ZodObjectWithEffect } from "../type/params";
 
 type getRouteProps = {
   path: any;
   paramsSchema?: ZodSchema<any>;
   responsesSchema: ZodSchema<any>;
 };
-
-type ZodObjectWithEffect =
-  | AnyZodObject
-  | ZodEffects<ZodObjectWithEffect, unknown, unknown>;
 
 export const getRoute = (
   props: getRouteProps

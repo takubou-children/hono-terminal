@@ -1,9 +1,16 @@
 import { createRoute } from "@hono/zod-openapi";
 import { getRoute } from "../util/get";
-import { BookSchema } from "../schema/book";
+import { BookParams, BookSchema } from "../schema/book";
+import { postRoute } from "../util/post";
 
-const routeData = getRoute({
-  path: "books",
+export const GetBooksRoute = getRoute({
+  path: "books/{id}",
+  paramsSchema: BookParams,
   responsesSchema: BookSchema,
 });
-export const BookRoute = createRoute(routeData);
+
+export const CreateBookRoute = postRoute({
+  path: "books",
+  requestBodySchema: BookSchema,
+  responsesSchema: BookSchema,
+});

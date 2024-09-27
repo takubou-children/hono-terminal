@@ -1,5 +1,5 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { BookRoute } from "./open_api/route/book";
+import { CreateBookRoute, GetBooksRoute } from "./open_api/route/book";
 
 const app = new OpenAPIHono();
 
@@ -11,3 +11,5 @@ app.doc("/doc", {
     title: "My API",
   },
 });
+
+export default app;

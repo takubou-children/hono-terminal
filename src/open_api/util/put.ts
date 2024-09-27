@@ -1,19 +1,24 @@
-import { ZodSchema } from "zod";
+import { AnyZodObject, ZodSchema } from "zod";
+import { ZodObjectWithEffect } from "../type/params";
+import { RouteConfig } from "@hono/zod-openapi";
+import { ZodRequestBody } from "../type/body";
 
 type putRouteProps = {
   path: string;
-  paramsSchema: ZodSchema<any>;
+  paramsSchema?: ZodSchema<any>;
   requestBodySchema: ZodSchema<any>;
   responsesSchema: ZodSchema<any>;
 };
 
-export const putRoute = (props: putRouteProps) => {
+export const putRoute = (
+  props: putRouteProps
+): Omit<RouteConfig, "path"> & { path: string } => {
   return {
     method: "get",
     path: props.path,
     request: {
-      params: props.responsesSchema,
-      body: props.requestBodySchema,
+      params: props.paramsSchema as AnyZodObject | ZodObjectWithEffect,
+      body: props.requestBodySchema as unknown as ZodRequestBody,
     },
     responses: {
       200: {
