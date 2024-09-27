@@ -1,23 +1,9 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
+import { Hono } from "hono";
 import { CreateBookRoute, GetBooksRoute } from "./open_api/route/book";
 import { swaggerUI } from "@hono/swagger-ui";
-const app = new OpenAPIHono();
+import api from "./open_api/route";
 
-app.openapi(GetBooksRoute, (c) => {
-  return c.json({});
-});
+const app = new Hono();
 
-app.openapi(CreateBookRoute, (c) => {
-  return c.json({});
-});
-
-app.get("/ui", swaggerUI({ url: "/doc" }));
-app.doc("/doc", {
-  openapi: "3.0.0",
-  info: {
-    version: "1.0.0",
-    title: "My API",
-  },
-});
-
+app.route("/api", api);
 export default app;
